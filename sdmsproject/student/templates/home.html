@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class=" text-center">
+  <br>
+  <h5>hello world</h5>
+</div>
+
+{% else %}
+  <section>
+    <form method="POST" action="{% url 'home' %}">
+      {% csrf_token %}
+      <div class="form_heading">
+        <h3>login</h3>
+        <hr>
+      </div>
+    <div class="form-group">
+      <label for="email">Usename</label>
+      {{ form.username }}
+    </div>
+  
+    <div class="form-group">
+      <label for="password">Password</label>
+      {{ form.password }}
+      <br>
+      <button class="login_register_button" type="submit">login</button>
+      <p>don&apos;t have an account?...<a class="text-decoration-none" href="{% url 'register_user' %}"> Register</a></p>
+    </div>
+  </form>
+  </section>
+{% endif %}
+{% endblock content %}
